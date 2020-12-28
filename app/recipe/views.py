@@ -98,6 +98,11 @@ class RecipeViewSet(viewsets.ModelViewSet):
 
         if serializer.is_valid():
             serializer.save()
+
+            link = serializer.data['image']
+            recipe.image_link = link
+            recipe.save()
+            
             return Response(
                 serializer.data,
                 status=status.HTTP_200_OK
